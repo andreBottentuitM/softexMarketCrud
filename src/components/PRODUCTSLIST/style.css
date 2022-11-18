@@ -1,0 +1,115 @@
+body{
+    background-color: rgb(229, 239, 255)
+}
+
+.header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin:0px 25px 0px 25px
+}
+
+.menu{
+    display:flex;
+    align-items: center;
+    
+}
+
+.menu ul{
+    display:flex;
+    list-style: none;
+    gap: 40px
+}
+
+.menu ul li {
+    align-items: center;
+    display: flex;
+    gap: 2px
+}
+
+.heading{
+    margin-left:15px;
+    position: relative;
+    display: inline-block;
+     text-align: center;
+     cursor: pointer;
+}
+
+.container{
+margin-bottom: 2rem
+}
+
+.container-input{
+    background-color: white;
+    border-radius: 6px 6px 6px 6px;
+    margin-top: 1rem;
+}
+.table{
+    background-color: white;
+    margin-bottom: 4rem
+}
+
+.container-add{
+    display: flex;
+    position: relative;
+    top:45px;
+    gap:10px;
+    justify-content: end;
+    margin:80px 11px 15px 0;
+}
+
+
+.totalProducts{
+  background-color: #0d6efd;
+  width:160px;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+  padding:7px;
+  font-weight: bolder;
+}
+
+.totalProducts span{
+   background-color:rgb(80, 180, 80);
+   padding:5px;
+border-radius: 4px;
+
+}
+
+.position{
+    margin-right:5px;
+    color: rgb(109, 107, 107);
+}
+
+.button{
+    font-weight: bolder;
+}
+
+.buttonAdd{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight:bolder
+}
+
+@media screen and (max-width: 770px ){
+    .container-add{
+        flex-direction: column;
+        width:90%;
+        margin: 0 auto 15px auto;
+        text-align: center;
+    }
+    .buttonAdd{
+        display: flex;
+        justify-content: center;
+    }
+
+    .totalProducts{
+        width: 100%
+    }
+
+    .heading{
+        margin-top:50px
+    }
+
+}

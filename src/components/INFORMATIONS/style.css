@@ -1,0 +1,24 @@
+.container-two{
+width: 80rem;
+overflow-x: scroll;
+text-align: center;
+
+}
+
+.user{
+    background-color: #50b450;
+    color:white;
+    padding:1px 5px 5px;
+    border-radius: 4px;
+    font-weight: bolder;
+   
+}
+
+.content-information{
+    background-color: #dbdbf3;
+
+    padding:1px;
+    width:80vw;
+    margin:0 auto
+}
+
