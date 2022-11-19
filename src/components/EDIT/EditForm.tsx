@@ -1,23 +1,29 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductsContext";
+import CurrencyInput from 'react-currency-input-field'
 
-export const EditForm = ({ productEdit }: any) => {
+export const EditForm = ({ productEdit, setShowEdit}: any) => {
   const { updateProduct } = useContext(ProductContext);
 
   const id = productEdit.id;
-
+  const [showAlert, setShowAlert] = useState(false);
   const [product, setName] = useState<any>(productEdit.product);
-  const [price, setEmail] = useState<any>(productEdit.price);
+  const [price, setPrice] = useState<any>(productEdit.price);
   const [user, setUser] = useState<any>(productEdit.user);
   const [type, setType] = useState<any>(productEdit.type);
-
+ 
   let date = productEdit.date;
 
   const updatedProductList = { id, date, product, price, user, type };
 
   const handleSubmit = () => {
-    updateProduct(id, updatedProductList);
+    if(product !== '' && price !== undefined && user !== '' && (type !== '' && type !== 'Product type')){
+      setShowEdit(false)
+    updateProduct(id, updatedProductList);}
+    else{
+      setShowAlert(true)
+    }
   };
 
   return (
@@ -33,16 +39,15 @@ export const EditForm = ({ productEdit }: any) => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-2">
-          <Form.Control
-            type="text"
-            placeholder="Price *"
-            name="email"
-            value={price}
-            onChange={(e) => setEmail(e.target.value)} 
-            required
-          />
-        </Form.Group>
+        <CurrencyInput
+        className="input-price mb-2"
+        prefix='$'
+        value={price}
+        maxLength={10}
+        placeholder="Please enter a price*"
+        decimalsLimit={2}
+        onValueChange={(value) => setPrice(value)}
+/>
         <Form.Group className="mb-2">
           <Form.Control
             placeholder="User *"
@@ -63,6 +68,16 @@ export const EditForm = ({ productEdit }: any) => {
           <option value="Automotivo">Automotivo</option>
           <option value="Móveis">Móveis</option>
         </Form.Select>
+        {showAlert && (
+          <Alert
+            className="mt-4"
+            variant="danger"
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            Por favor, preencha todos os dados de forma correta!
+          </Alert>
+        )}
         <div className="d-grid gap-2 mt-4">
           <Button variant="success" className="" onClick={handleSubmit}>
        

@@ -6,10 +6,10 @@ import { EditForm } from "../EDIT/EditForm";
 
 export const AddProduct = ({ product, index }: any) => {
   const { deleteProduct } = useContext(ProductContext);
-  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const handleClose = () => {
-    setShow(false);
+    setShowEdit(false);
   };
   return (
     <>
@@ -17,7 +17,7 @@ export const AddProduct = ({ product, index }: any) => {
       <td>{product.date}</td>
       <td>{product.product}</td>
       <td>{product.type}</td>
-      <td>{product.price}</td>
+      <td>{product.priceFormatDollar}</td>
       <td>
         <span className="user">{product.user}</span>
       </td>
@@ -25,7 +25,7 @@ export const AddProduct = ({ product, index }: any) => {
         <OverlayTrigger overlay={<Tooltip id={`tooltip-top`}>Edit</Tooltip>}>
           <button
             onClick={() => {
-              setShow(true);
+              setShowEdit(true);
             }}
             className="btn text-warning btn-act"
             data-toggle="modal"
@@ -44,19 +44,19 @@ export const AddProduct = ({ product, index }: any) => {
         </OverlayTrigger>
       </td>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showEdit} onHide={handleClose}>
         {/*Criação do modal de edit. Função para fechar o modal */}
         <Modal.Header closeButton>
           <Modal.Title>Edit Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditForm productEdit={product} />
+          <EditForm productEdit={product} setShowEdit={setShowEdit} />
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"
             onClick={() => {
-              setShow(false);
+              setShowEdit(false);
             }}
           >
             {/*Criação de botão para fechar */}

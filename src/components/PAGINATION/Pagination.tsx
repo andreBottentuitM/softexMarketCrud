@@ -15,7 +15,7 @@ export const Paginations = ({ pages, setCurrentPage }: any) => {
 
   return (
     <div>
-      <Pagination className="justify-content-center">
+      <Pagination className="justify-content-center" >
         <Pagination.First onClick={() => setButton(numbersArray[0])} />
         <Pagination.Prev
           onClick={() =>

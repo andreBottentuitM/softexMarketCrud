@@ -41,7 +41,6 @@ export const NavbarComponent = ({ onClick }: any) => {
               <div className="d-flex align-items-center">
                 <FaShoppingCart className="position" />
                 <NavDropdown
-                  className="test"
                   title="Products"
                   id="navbarScrollingDropdown"
                 >

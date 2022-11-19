@@ -1,21 +1,31 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, InputGroup, Alert } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductsContext";
+import CurrencyInput from 'react-currency-input-field'
 
-export const AddProductList = () => {
+
+
+export const AddProductList = ({setShowAdd}:any) => {
   const { addProduct } = useContext(ProductContext);
-
+  const [showAlert, setShowAlert] = useState(false);
   const [product, setProduct] = useState<any>("");
   const [price, setPrice] = useState<any>("");
   const [user, setUser] = useState<any>("");
   const [type, setType] = useState<any>("");
 
   const handleSubmit = () => {
-    addProduct({ product, type, price, user });
+    
+    if(product !== '' && price !== undefined && user !== '' && (type !== '' && type !== 'Product type')){
+      addProduct({ product, type, price, user });
+      setShowAdd(false)
+    }else{
+      setShowAlert(true)
+    }
   };
 
   return (
     <div>
+      
       <Form className="justify-content-center">
         <Form.Group className="mb-2 justify-content-center">
           <Form.Control
@@ -27,18 +37,17 @@ export const AddProductList = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-2">
-          <Form.Control
-            type="text"
-            placeholder="Price *"
-            name="Price"
-            value={price}
-            onChange={(e) => {
-              setPrice(e.target.value);
-            }} //Vai mudar o valor do email
-            required
-          />
-        </Form.Group>
+        <InputGroup className="mb-2">
+        <CurrencyInput
+        className="input-price"
+        prefix='$'
+        maxLength={10}
+        placeholder="Please enter a price"
+        defaultValue={0}
+        decimalsLimit={2}
+        onValueChange={(value) => setPrice(value)}
+/>
+      </InputGroup>
         <Form.Group className="mb-2">
           <Form.Control
             placeholder="User *"
@@ -61,6 +70,16 @@ export const AddProductList = () => {
           <option value="Automotivo">Automotivo</option>
           <option value="Móveis">Móveis</option>
         </Form.Select>
+        {showAlert && (
+          <Alert
+            className="mt-4"
+            variant="danger"
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            Por favor, preencha todos os dados de forma correta!
+          </Alert>
+        )}
         <div className="d-grid gap-2 mt-4">
           <Button variant="success" onClick={handleSubmit}>
             Add Product

@@ -14,10 +14,16 @@ const ProductContextProvider = (props: any) => {
   const addProduct = ({ product, type, price, user }: any) => {
     let date: any = new Date();
     date = date.toLocaleDateString();
+    let priceFormatNumber = parseFloat(price)
+    let priceFormatDollar = priceFormatNumber.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+
 
     setList([
       ...productList,
-      { id: uuidv4(), date, product, type, price, user },
+      { id: uuidv4(), date, product, type, priceFormatDollar, user },
     ]);
   };
 
@@ -67,7 +73,6 @@ const ProductContextProvider = (props: any) => {
   };
 
   const updateProduct = (id: any, updatedEmployee: any) => {
-    console.log(updatedEmployee);
     setList(
       productList.map((employee: any) =>
         employee.id === id ? updatedEmployee : employee

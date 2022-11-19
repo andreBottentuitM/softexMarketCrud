@@ -1,4 +1,3 @@
-import Alert from "react-bootstrap/Alert";
 import { useState, useContext } from "react";
 import { Table, Button, Container, Modal } from "react-bootstrap";
 import { AddProduct } from "../INFORMATIONS/information";
@@ -11,8 +10,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
 const ProductList = () => {
-  const [showAlert, setShowAlert] = useState(false);
 
+ 
   const [showAdd, setShowAdd] = useState<boolean>(false);
 
   const [currentPage, setPage] = useState(1);
@@ -27,31 +26,23 @@ const ProductList = () => {
 
   return (
     <div>
-      <Container
-        className="w-auto p-3 container-input container shadow p-3 mb-5 bg-body rounded"
+      <Container 
+        className={`w-auto p-3 container-input container shadow p-3 mb-5 rounded`}
         fluid="md"
       >
-        {showAlert && (
-          <Alert
-            variant="danger"
-            onClose={() => setShowAlert(false)}
-            dismissible
-          >
-            Por favor, preencha todos os dados de forma correta!
-          </Alert>
-        )}
-        <NavbarComponent onClick={setShowAdd} />
+        <NavbarComponent onClick={setShowAdd}/>
+
         <div className="container-add">
           <Button
             onClick={() => {
               setShowAdd(true);
             }}
             className="buttonAdd"
-            variant="primary"
+            variant='primary'
           >
-            <MdAddCircle /> <span> Create New Product </span>
+            <MdAddCircle  /> <span> Create New Product </span>
           </Button>
-          <div className="totalProducts">
+          <div className='totalProducts primary'>
             All Products: <span>{productList.length}</span>
           </div>
         </div>
@@ -69,7 +60,9 @@ const ProductList = () => {
             <Modal.Title>Add Product</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AddProductList />
+
+            <AddProductList  setShowAdd={setShowAdd}/>
+
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -84,11 +77,13 @@ const ProductList = () => {
           </Modal.Footer>
         </Modal>
         <Container className="w-auto table-responsive" fluid="md">
-          <Table className="table text-center" striped bordered hover>
+          <Table className="table text-center" striped bordered hover variant='light'>
             <thead>
               <tr className="thead col align-items-center">
                 <th>SI</th>
+                <th>Product Date</th>
                 <th>Product Name</th>
+                <th>Product Type</th>
                 <th>Product Price</th>
                 <th>Uploaded By</th>
                 <th>Action</th>
@@ -104,8 +99,8 @@ const ProductList = () => {
               })}
             </tbody>
           </Table>
-        </Container>
         <Paginations pages={totalPages} setCurrentPage={setPage} />
+        </Container>
       </Container>
     </div>
   );

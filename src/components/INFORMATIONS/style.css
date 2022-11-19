@@ -5,6 +5,21 @@ text-align: center;
 
 }
 
+.input-price{
+    width:100%;
+    border-radius:6px;
+    border:1px #c1c5c9 solid;
+    color:#495057;
+    outline:none;
+    transition: all .1s linear;
+    padding: 6px 12px
+}
+
+.input-price:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+    border:1px #00bdff solid;
+}
+
 .user{
     background-color: #50b450;
     color:white;
