@@ -68,14 +68,25 @@ const ProductContextProvider = (props: any) => {
     }
   };
 
+  
+
   const deleteProduct = (id: any) => {
-    setList(productList.filter((collaborator: any) => collaborator.id !== id));
+    setList(productList.filter((product: any) => product.id !== id));
   };
 
-  const updateProduct = (id: any, updatedEmployee: any) => {
+  const updateProduct = (id: any, updateProduct: any) => {
+    let priceFormatNumber = parseFloat(updateProduct.priceFormatDollar)
+    let formatDollar = priceFormatNumber.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+
+    updateProduct.priceFormatDollar = formatDollar
+  
+
     setList(
-      productList.map((employee: any) =>
-        employee.id === id ? updatedEmployee : employee
+      productList.map((product: any) =>
+      product.id === id ? updateProduct : product
       )
     );
   };

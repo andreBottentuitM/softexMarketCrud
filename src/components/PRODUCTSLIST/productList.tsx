@@ -6,6 +6,7 @@ import { MdAddCircle } from "react-icons/md";
 import { AddProductList } from "../ADDPRODUCT/AddProduct";
 import { ProductContext } from "../../context/ProductsContext";
 import { NavbarComponent } from "../NAVBAR/Navbar";
+import {BsArrowDownUp} from 'react-icons/bs'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
@@ -80,12 +81,12 @@ const ProductList = () => {
           <Table className="table text-center" striped bordered hover variant='light'>
             <thead>
               <tr className="thead col align-items-center">
-                <th>SI</th>
-                <th>Product Date</th>
-                <th>Product Name</th>
-                <th>Product Type</th>
-                <th>Product Price</th>
-                <th>Uploaded By</th>
+                <th>SI <BsArrowDownUp/> </th>
+                <th>Product Date <BsArrowDownUp/></th>
+                <th>Product Name <BsArrowDownUp/></th>
+                <th>Product Type <BsArrowDownUp/></th>
+                <th>Product Price <BsArrowDownUp/></th>
+                <th>Uploaded By <BsArrowDownUp/></th>
                 <th>Action</th>
               </tr>
             </thead>

@@ -9,16 +9,17 @@ export const EditForm = ({ productEdit, setShowEdit}: any) => {
   const id = productEdit.id;
   const [showAlert, setShowAlert] = useState(false);
   const [product, setName] = useState<any>(productEdit.product);
-  const [price, setPrice] = useState<any>(productEdit.price);
+  const [priceFormatDollar, setPrice] = useState<any>(productEdit.priceFormatDollar.replace(/,/, "").substring(1));
   const [user, setUser] = useState<any>(productEdit.user);
   const [type, setType] = useState<any>(productEdit.type);
- 
+
   let date = productEdit.date;
 
-  const updatedProductList = { id, date, product, price, user, type };
+  const updatedProductList = { id, date, product, priceFormatDollar, user, type };
 
   const handleSubmit = () => {
-    if(product !== '' && price !== undefined && user !== '' && (type !== '' && type !== 'Product type')){
+    
+    if(product !== '' && priceFormatDollar !== undefined && user !== '' && (type !== '' && type !== 'Product type')){
       setShowEdit(false)
     updateProduct(id, updatedProductList);}
     else{
@@ -42,11 +43,15 @@ export const EditForm = ({ productEdit, setShowEdit}: any) => {
         <CurrencyInput
         className="input-price mb-2"
         prefix='$'
-        value={price}
+        value={priceFormatDollar}
         maxLength={10}
         placeholder="Please enter a price*"
         decimalsLimit={2}
-        onValueChange={(value) => setPrice(value)}
+        onValueChange={(value) => {
+         
+
+          setPrice(value)
+        } }
 />
         <Form.Group className="mb-2">
           <Form.Control

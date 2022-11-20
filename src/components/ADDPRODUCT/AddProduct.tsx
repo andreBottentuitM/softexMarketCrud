@@ -45,7 +45,7 @@ export const AddProductList = ({setShowAdd}:any) => {
         placeholder="Please enter a price"
         defaultValue={0}
         decimalsLimit={2}
-        onValueChange={(value) => setPrice(value)}
+        onValueChange={(value:any) => setPrice(value.replace(/,/, '.'))}
 />
       </InputGroup>
         <Form.Group className="mb-2">
