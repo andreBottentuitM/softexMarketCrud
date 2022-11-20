@@ -7,9 +7,11 @@ const ProductContextProvider = (props: any) => {
   const [productList, setList] = useState<any>([]);
   const [searchList, setSearch] = useState<any>(productList);
 
+
   useEffect(() => {
     setSearch(productList);
   }, [productList]);
+ 
 
   const addProduct = ({ product, type, price, user }: any) => {
     let date: any = new Date();
@@ -28,8 +30,8 @@ const ProductContextProvider = (props: any) => {
   };
 
   const searchProduct = (searchValue: string, type: string) => {
+    let cloneList = productList
     if (!type) {
-      let cloneList = productList;
       setSearch(
         cloneList.filter(
           (item: any) =>
@@ -38,28 +40,24 @@ const ProductContextProvider = (props: any) => {
         )
       );
     } else if (searchValue === "Eletroeletrônico") {
-      let cloneList = productList;
       setSearch(
         cloneList.filter((item: any) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Alimentos e bebidas") {
-      let cloneList = productList;
       setSearch(
         cloneList.filter((item: any) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Automotivo") {
-      let cloneList = productList;
       setSearch(
         cloneList.filter((item: any) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Móveis") {
-      let cloneList = productList;
       setSearch(
         cloneList.filter((item: any) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
@@ -101,6 +99,7 @@ const ProductContextProvider = (props: any) => {
         searchProduct,
         searchList,
         setSearch,
+        
       }}
     >
       {props.children}

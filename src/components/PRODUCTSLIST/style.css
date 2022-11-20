@@ -36,6 +36,10 @@ body{
      cursor: pointer;
 }
 
+.heading-table th{
+    cursor: pointer;
+}
+
 .container{
 margin-bottom: 2rem
 }
