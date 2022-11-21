@@ -11,7 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import {List} from '../TYPES/types'
 
-
 type OrderType = {
   id: 'down' |'up';
   date: 'down' | 'up';
