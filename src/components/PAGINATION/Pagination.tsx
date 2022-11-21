@@ -1,55 +1,68 @@
-import { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
+import {useContext} from 'react'
+import {ProductContext} from '../../context/ProductsContext'
 
 type Props = {
   pages:number;
-  setCurrentPage: (setPage:number) => void
 }
 
-export const Paginations = ({ pages, setCurrentPage }: Props) => {
-  const [currentButton, setButton] = useState(1);
+export const Paginations = ({ pages }: Props) => {
 
-  useEffect(() => {
-    setCurrentPage(currentButton);
-  }, [pages, currentButton]);
+  const { setPage, currentPage } = useContext(ProductContext);
 
   let numbersArray: number[] = [];
   for (let i = 1; i <= pages; i++) {
     numbersArray.push(i);
   }
 
+  let isPageNumberOutOfRange:any;
+
+  const paginationList = numbersArray.map((item, key) => {
+    const pageNumber = item
+    const isPageNumberFirst = pageNumber === 1
+    const isPageNumberLast = pageNumber === pages
+    const isCurrentPageWithinTwoPageNumbers = Math.abs(pageNumber - currentPage) <= 1;
+    if(isPageNumberFirst || isPageNumberLast || isCurrentPageWithinTwoPageNumbers){
+      isPageNumberOutOfRange = false;
+
+      return (
+        <Pagination.Item
+          key={pageNumber}
+          active={currentPage === item ? true : false}
+          onClick={() => setPage(pageNumber)}
+        >
+          {pageNumber}
+        </Pagination.Item>
+      );
+    }
+    if (!isPageNumberOutOfRange) {
+      isPageNumberOutOfRange = true;
+      return <Pagination.Ellipsis key={pageNumber}/>;
+    }
+    return null;
+  })
+  
   return (
     <div>
-      <Pagination className="justify-content-center" >
-        <Pagination.First onClick={() => setButton(numbersArray[0])} />
+      <Pagination className='paginations' >
+        <Pagination.First onClick={() => setPage(numbersArray[0])} />
         <Pagination.Prev
           onClick={() =>
-            currentButton !== numbersArray[0]
-              ? setButton(currentButton - 1)
+            currentPage !== numbersArray[0]
+              ? setPage(currentPage - 1)
               : null
           }
         />
-        <Pagination.Ellipsis />
-        {numbersArray.map((item, key) => {
-          return (
-            <Pagination.Item
-              key={key}
-              active={currentButton === item ? true : false}
-              onClick={() => setButton(item)}
-            >
-              {item}
-            </Pagination.Item>
-          );
-        })}
+        {paginationList}
         <Pagination.Next
           onClick={() =>
-            currentButton !== numbersArray[numbersArray.length - 1]
-              ? setButton(currentButton + 1)
+            currentPage !== numbersArray[numbersArray.length - 1]
+              ? setPage(currentPage + 1)
               : null
           }
         />
         <Pagination.Last
-          onClick={() => setButton(numbersArray[numbersArray.length - 1])}
+          onClick={() => setPage(numbersArray[numbersArray.length - 1])}
         />
       </Pagination>
     </div>

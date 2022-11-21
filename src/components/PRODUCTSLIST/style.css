@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(229, 239, 255);
+    background-color: rgb(249, 223, 200);
     
 }
 
@@ -9,6 +9,10 @@ body{
     justify-content: space-between;
     margin:0px 25px 0px 25px;
     
+}
+
+.logotipo{
+    margin-bottom: 4px;
 }
 .menu{
     display:flex;
@@ -82,7 +86,6 @@ border-radius: 4px;
 }
 
 .position{
-    margin-right:5px;
     color: rgb(109, 107, 107);
 }
 
@@ -95,6 +98,11 @@ border-radius: 4px;
     align-items: center;
     gap: 5px;
     font-weight:bolder
+}
+
+.paginations{
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 770px ){
@@ -115,6 +123,11 @@ border-radius: 4px;
 
     .heading{
         margin-top:50px
+    }
+
+    .paginations{
+        display: flex;
+        justify-content: left;
     }
 
 }

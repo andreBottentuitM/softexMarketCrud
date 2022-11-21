@@ -17,8 +17,13 @@ type ContextProvider = {//Criando type
 export const ProductContext = createContext<any>([]);
 
 const ProductContextProvider = ({children}: ContextProvider) => {
-  const [productList, setList] = useState<List[]>([]);
+  const [productList, setList] = useState<List[]>([
+    {id:1,date:'10/11/2018',product:'Carro Uno',type:'Automotivo',priceFormatDollar:'$20,000.00',user:'Andre'},
+    {id:2,date:'15/01/2020',product:'Sofá Cama',type:'Móveis',priceFormatDollar:'$2,000.00',user:'João'},
+    {id:3,date:'01/03/2021',product:'Carne',type:'Alimentos e bebidas',priceFormatDollar:'$23.00',user:'Julio'}
+  ]);
   const [searchList, setSearch] = useState<List[]>(productList);
+  const [currentPage, setPage] = useState<number>(1);
 
 
   useEffect(() => {
@@ -76,6 +81,7 @@ const ProductContextProvider = ({children}: ContextProvider) => {
         )
       );
     }
+    setPage(1)
   };
 
   const deleteProduct = (id:number) => {
@@ -108,6 +114,8 @@ const ProductContextProvider = ({children}: ContextProvider) => {
         searchProduct,
         searchList,
         setSearch,
+        currentPage,
+        setPage
         
       }}
     >

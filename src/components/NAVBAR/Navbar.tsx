@@ -4,7 +4,6 @@ import {
   Form,
   Container,
   Button,
-  FloatingLabel,
   NavDropdown,
   Tooltip,
   OverlayTrigger,
@@ -17,23 +16,25 @@ import { useState, useContext } from "react";
 import { ProductContext } from "../../context/ProductsContext";
 
 type Props = {
-  onClick:(setShow:boolean) => void
+  onClick:(setShow:boolean) => void;
 }
 
 export const NavbarComponent = ({ onClick }: Props) => {
   const { searchProduct } = useContext(ProductContext);
 
   const [search, setSearch] = useState("");
+  
 
   const searchValue = () => {
     searchProduct(search);
   };
+
   return (
     <div>
       <Navbar bg="white" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">
-            <img src={logo} width={150} alt="softexMarket" />
+          <Navbar.Brand href="/" className="logotipo">
+            <img src={logo} width={150} alt="softexMarket" title="softexMarket" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -126,6 +127,12 @@ export const NavbarComponent = ({ onClick }: Props) => {
                 className="me-2"
                 aria-label="Search"
                 value={search}
+                onKeyPress={(e)=> {
+                  if(e.key === 'Enter'){
+                    e.preventDefault()
+                    searchValue()
+                  }
+                }}
                 onChange={(e) => {
                   setSearch(e.target.value);
                 }}

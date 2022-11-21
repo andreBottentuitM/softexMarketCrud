@@ -13,6 +13,7 @@ import {List} from '../TYPES/types'
 
 
 type OrderType = {
+  id: 'down' |'up';
   date: 'down' | 'up';
   name: 'down' | 'up';
   type: 'down' | 'up';
@@ -23,16 +24,17 @@ type OrderType = {
 const ProductList = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [order, setOrder] = useState<OrderType>({
+    id: "down",
     date: "down",
     name: "down",
     type: "down",
     price: "down",
     user: "down",
   });
-  const [currentPage, setPage] = useState(1);
-  const { productList, searchList, setSearch } = useContext(ProductContext);
+  
+  const { productList, searchList, setSearch,currentPage,setPage } = useContext(ProductContext);
 
-  const productPerPage = 10;
+  const productPerPage = 5;
 
   const lastProduct = currentPage * productPerPage;
   const firstProduct = lastProduct - productPerPage;
@@ -42,8 +44,43 @@ const ProductList = () => {
   const orderedProduct = (type: string) => {
     let cloneList = [...searchList];
     let cloneOrder = order;
+     
+    if(type === 'date'){
+      cloneList.sort((a, b) => {
+        let num1 = Date.parse(a.date.split('/').reverse().join('-'))
+        let num2 = Date.parse(b.date.split('/').reverse().join('-'))
+        if (num1 < num2) {
+          return cloneOrder.date === "down" ? -1 : 1;
+        }
+        if (num1 > num2) {
+          return cloneOrder.date === "down" ? 1 : -1;
+        }
+        return 0;
+      })
+      cloneOrder.date === "down"
+        ? (cloneOrder.date = "up")
+        : (cloneOrder.date = "down")
+    }
+    else if(type === 'id'){
+      
+      cloneList.sort((a, b) => {
+        let num1 = a.id
+        let num2 = b.id
+        if (num1 < num2) {
+          return cloneOrder.id === "down" ? -1 : 1;
+        }
+        if (num1 > num2) {
+          return cloneOrder.id === "down" ? 1 : -1;
+        }
+        return 0;
+      })
+      cloneOrder.id === "down"
+        ? (cloneOrder.id = "up")
+        : (cloneOrder.id = "down")
 
-    if (type === "name") {
+    }
+    else if (type === "name") {
+
       cloneList.sort((a, b) => {
         return order.name === "down"
           ? a.product.localeCompare(b.product)
@@ -53,7 +90,9 @@ const ProductList = () => {
         ? (cloneOrder.name = "up")
         : (cloneOrder.name = "down");
       setOrder(cloneOrder);
+
     } else if (type === "type") {
+
       cloneList.sort((a, b) => {
         return order.type === "down"
           ? a.type.localeCompare(b.type)
@@ -63,7 +102,9 @@ const ProductList = () => {
         ? (cloneOrder.type = "up")
         : (cloneOrder.type = "down");
       setOrder(cloneOrder);
+
     } else if (type === "user") {
+
       cloneList.sort((a, b) => {
         return order.user === "down"
           ? a.user.localeCompare(b.user)
@@ -73,7 +114,9 @@ const ProductList = () => {
         ? (cloneOrder.user = "up")
         : (cloneOrder.user = "down");
       setOrder(cloneOrder);
+
     } else if (type === "price") {
+
       cloneList.sort((a, b) => {
         let num1 = parseFloat(
           a.priceFormatDollar.substring(1).replace(/,/, "")
@@ -92,12 +135,14 @@ const ProductList = () => {
       cloneOrder.price === "down"
         ? (cloneOrder.price = "up")
         : (cloneOrder.price = "down");
-      setOrder(cloneOrder);
+      setOrder(cloneOrder)
+
     } else if (type === "user") {
       cloneList.sort((a, b) => {
         return a.user.localeCompare(b.user);
       });
     }
+    setPage(1)
     setSearch(cloneList);
   };
 
@@ -107,7 +152,7 @@ const ProductList = () => {
         className={`w-auto p-3 container-input container shadow p-3 mb-5 rounded`}
         fluid="md"
       >
-        <NavbarComponent onClick={setShowAdd} />
+        <NavbarComponent onClick={setShowAdd}/>
 
         <div className="container-add">
           <Button
@@ -132,7 +177,6 @@ const ProductList = () => {
             setShowAdd(false);
           }}
         >
-          {/*Criação do modal de edit. Função para fechar o modal */}
           <Modal.Header closeButton>
             <Modal.Title>Add Product</Modal.Title>
           </Modal.Header>
@@ -146,12 +190,11 @@ const ProductList = () => {
               }}
               variant="secondary"
             >
-              {/*Criação de botão para fechar */}
               Close Button
             </Button>
           </Modal.Footer>
         </Modal>
-        <Container className="w-auto table-responsive" fluid="md">
+        <Container className="table-responsive d-flex justify-content-center flex-column" fluid="md">
           <Table
             className="table text-center"
             striped
@@ -162,9 +205,15 @@ const ProductList = () => {
             <thead>
               <tr className="thead col align-items-center heading-table">
                 <th>
-                  SI <BsArrowDownUp />{" "}
+                  SI <BsArrowDownUp onClick={() => {
+                    orderedProduct("id");
+                  }} />{" "}
                 </th>
-                <th onClick={() => {}}>
+                <th
+                onClick={() => {
+                  orderedProduct("date");
+                }}
+                >
                   Product Date <BsArrowDownUp />
                 </th>
                 <th
@@ -208,7 +257,7 @@ const ProductList = () => {
               })}
             </tbody>
           </Table>
-          <Paginations pages={totalPages} setCurrentPage={setPage} />
+          <Paginations pages={totalPages} />
         </Container>
       </Container>
     </div>
