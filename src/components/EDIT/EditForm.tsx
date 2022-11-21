@@ -2,16 +2,22 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductsContext";
 import CurrencyInput from 'react-currency-input-field'
+import {List} from '../TYPES/types'
 
-export const EditForm = ({ productEdit, setShowEdit}: any) => {
+type Props = {
+  productEdit:List;
+  setShowEdit:(item:boolean)=> void;
+}
+
+export const EditForm = ({ productEdit, setShowEdit}: Props) => {
   const { updateProduct } = useContext(ProductContext);
 
   const id = productEdit.id;
   const [showAlert, setShowAlert] = useState(false);
-  const [product, setName] = useState<any>(productEdit.product);
-  const [priceFormatDollar, setPrice] = useState<any>(productEdit.priceFormatDollar.replace(/,/, "").substring(1));
-  const [user, setUser] = useState<any>(productEdit.user);
-  const [type, setType] = useState<any>(productEdit.type);
+  const [product, setName] = useState<string>(productEdit.product);
+  const [priceFormatDollar, setPrice] = useState<string|undefined>(productEdit.priceFormatDollar.replace(/,/, "").substring(1));
+  const [user, setUser] = useState<string>(productEdit.user);
+  const [type, setType] = useState<string>(productEdit.type);
 
   let date = productEdit.date;
 
@@ -48,8 +54,6 @@ export const EditForm = ({ productEdit, setShowEdit}: any) => {
         placeholder="Please enter a price*"
         decimalsLimit={2}
         onValueChange={(value) => {
-         
-
           setPrice(value)
         } }
 />

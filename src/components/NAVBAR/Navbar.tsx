@@ -16,7 +16,11 @@ import { IoMdInformationCircle, IoMdHelpCircle } from "react-icons/io";
 import { useState, useContext } from "react";
 import { ProductContext } from "../../context/ProductsContext";
 
-export const NavbarComponent = ({ onClick }: any) => {
+type Props = {
+  onClick:(setShow:boolean) => void
+}
+
+export const NavbarComponent = ({ onClick }: Props) => {
   const { searchProduct } = useContext(ProductContext);
 
   const [search, setSearch] = useState("");

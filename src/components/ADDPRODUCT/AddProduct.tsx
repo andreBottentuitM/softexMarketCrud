@@ -3,20 +3,22 @@ import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductsContext";
 import CurrencyInput from 'react-currency-input-field'
 
+type Props = {
+  setShowAdd:(item:boolean)=> void;
+}
 
-
-export const AddProductList = ({setShowAdd}:any) => {
-  const { addProduct } = useContext(ProductContext);
+export const AddProductList = ({setShowAdd}:Props) => {
+  const { addProduct,productList } = useContext(ProductContext);
   const [showAlert, setShowAlert] = useState(false);
-  const [product, setProduct] = useState<any>("");
-  const [price, setPrice] = useState<any>("");
-  const [user, setUser] = useState<any>("");
-  const [type, setType] = useState<any>("");
+  const [product, setProduct] = useState<string>("");
+  const [price, setPrice] = useState<string>('');
+  const [user, setUser] = useState<string>("");
+  const [type, setType] = useState<string>("");
 
   const handleSubmit = () => {
-    
+      let id = productList[productList.length - 1] === undefined ? 1 : productList[productList.length - 1].id + 1
     if(product !== '' && price !== undefined && user !== '' && (type !== '' && type !== 'Product type')){
-      addProduct({ product, type, price, user });
+      addProduct({id ,product, type, price, user });
       setShowAdd(false)
     }else{
       setShowAlert(true)
@@ -45,7 +47,9 @@ export const AddProductList = ({setShowAdd}:any) => {
         placeholder="Please enter a price"
         defaultValue={0}
         decimalsLimit={2}
-        onValueChange={(value:any) => setPrice(value.replace(/,/, '.'))}
+        onValueChange={(value:any) =>{
+          
+           setPrice(value.replace(/,/, '.'))}}
 />
       </InputGroup>
         <Form.Group className="mb-2">

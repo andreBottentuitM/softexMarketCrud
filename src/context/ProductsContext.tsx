@@ -1,11 +1,24 @@
-import { createContext, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { createContext, useEffect, useState, ReactNode } from "react";
+import {List} from '../components/TYPES/types'
+
+
+type AddProduct = {
+  id: number;
+  product: string;
+  type: string;
+  price: string;
+  user: string;
+}
+
+type ContextProvider = {//Criando type
+  children: ReactNode
+};
 
 export const ProductContext = createContext<any>([]);
 
-const ProductContextProvider = (props: any) => {
-  const [productList, setList] = useState<any>([]);
-  const [searchList, setSearch] = useState<any>(productList);
+const ProductContextProvider = ({children}: ContextProvider) => {
+  const [productList, setList] = useState<List[]>([]);
+  const [searchList, setSearch] = useState<List[]>(productList);
 
 
   useEffect(() => {
@@ -13,7 +26,7 @@ const ProductContextProvider = (props: any) => {
   }, [productList]);
  
 
-  const addProduct = ({ product, type, price, user }: any) => {
+  const addProduct = ({ id ,product, type, price, user }: AddProduct) => {
     let date: any = new Date();
     date = date.toLocaleDateString();
     let priceFormatNumber = parseFloat(price)
@@ -21,11 +34,10 @@ const ProductContextProvider = (props: any) => {
       style: "currency",
       currency: "USD",
     });
-
-
+     
     setList([
       ...productList,
-      { id: uuidv4(), date, product, type, priceFormatDollar, user },
+      { id, date, product, type, priceFormatDollar, user },
     ]);
   };
 
@@ -34,45 +46,43 @@ const ProductContextProvider = (props: any) => {
     if (!type) {
       setSearch(
         cloneList.filter(
-          (item: any) =>
+          (item) =>
             item.product.toLowerCase().includes(searchValue.toLowerCase()) ||
             item.user.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Eletroeletrônico") {
       setSearch(
-        cloneList.filter((item: any) =>
+        cloneList.filter((item) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Alimentos e bebidas") {
       setSearch(
-        cloneList.filter((item: any) =>
+        cloneList.filter((item) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Automotivo") {
       setSearch(
-        cloneList.filter((item: any) =>
+        cloneList.filter((item) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     } else if (searchValue === "Móveis") {
       setSearch(
-        cloneList.filter((item: any) =>
+        cloneList.filter((item) =>
           item.type.toLowerCase().includes(searchValue.toLowerCase())
         )
       );
     }
   };
 
-  
-
-  const deleteProduct = (id: any) => {
-    setList(productList.filter((product: any) => product.id !== id));
+  const deleteProduct = (id:number) => {
+    setList(productList.filter((product) => product.id !== id));
   };
 
-  const updateProduct = (id: any, updateProduct: any) => {
+  const updateProduct = (id: number, updateProduct: List) => {
     let priceFormatNumber = parseFloat(updateProduct.priceFormatDollar)
     let formatDollar = priceFormatNumber.toLocaleString("en-US", {
       style: "currency",
@@ -81,9 +91,8 @@ const ProductContextProvider = (props: any) => {
 
     updateProduct.priceFormatDollar = formatDollar
   
-
     setList(
-      productList.map((product: any) =>
+      productList.map((product) =>
       product.id === id ? updateProduct : product
       )
     );
@@ -102,7 +111,7 @@ const ProductContextProvider = (props: any) => {
         
       }}
     >
-      {props.children}
+      {children}
     </ProductContext.Provider>
   );
 };

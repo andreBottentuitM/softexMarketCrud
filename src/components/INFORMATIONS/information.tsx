@@ -3,17 +3,22 @@ import { ProductContext } from "../../context/ProductsContext";
 import { Modal, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "../INFORMATIONS/style.css";
 import { EditForm } from "../EDIT/EditForm";
+import {List} from "../TYPES/types"
 
-export const AddProduct = ({ product, index }: any) => {
+type Props = {
+  product: List
+}
+
+
+export const AddProduct = ({product}:Props) => {
   const { deleteProduct } = useContext(ProductContext);
   const [showEdit, setShowEdit] = useState(false);
-
   const handleClose = () => {
     setShowEdit(false);
   };
   return (
     <>
-      <td>{index + 1}</td>
+      <td>{product.id}</td>
       <td>{product.date}</td>
       <td>{product.product}</td>
       <td>{product.type}</td>

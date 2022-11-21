@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
 
-export const Paginations = ({ pages, setCurrentPage }: any) => {
+type Props = {
+  pages:number;
+  setCurrentPage: (setPage:number) => void
+}
+
+export const Paginations = ({ pages, setCurrentPage }: Props) => {
   const [currentButton, setButton] = useState(1);
 
   useEffect(() => {

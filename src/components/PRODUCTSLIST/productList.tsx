@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Table, Button, Container, Modal } from "react-bootstrap";
 import { AddProduct } from "../INFORMATIONS/information";
 import { Paginations } from "../PAGINATION/Pagination";
@@ -9,10 +9,20 @@ import { NavbarComponent } from "../NAVBAR/Navbar";
 import { BsArrowDownUp } from "react-icons/bs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
+import {List} from '../TYPES/types'
+
+
+type OrderType = {
+  date: 'down' | 'up';
+  name: 'down' | 'up';
+  type: 'down' | 'up';
+  price: 'down' | 'up';
+  user: 'down' | 'up';
+}
 
 const ProductList = () => {
-  const [showAdd, setShowAdd] = useState<boolean>(false);
-  const [order, setOrder] = useState({
+  const [showAdd, setShowAdd] = useState(false);
+  const [order, setOrder] = useState<OrderType>({
     date: "down",
     name: "down",
     type: "down",
@@ -29,12 +39,12 @@ const ProductList = () => {
   const pageDisplay = searchList.slice(firstProduct, lastProduct);
   const totalPages = Math.ceil(searchList.length / productPerPage);
 
-  const orderedProduct = (type: any) => {
+  const orderedProduct = (type: string) => {
     let cloneList = [...searchList];
     let cloneOrder = order;
 
     if (type === "name") {
-      cloneList.sort((a: any, b: any) => {
+      cloneList.sort((a, b) => {
         return order.name === "down"
           ? a.product.localeCompare(b.product)
           : b.product.localeCompare(a.product);
@@ -44,7 +54,7 @@ const ProductList = () => {
         : (cloneOrder.name = "down");
       setOrder(cloneOrder);
     } else if (type === "type") {
-      cloneList.sort((a: any, b: any) => {
+      cloneList.sort((a, b) => {
         return order.type === "down"
           ? a.type.localeCompare(b.type)
           : b.type.localeCompare(a.type);
@@ -54,7 +64,7 @@ const ProductList = () => {
         : (cloneOrder.type = "down");
       setOrder(cloneOrder);
     } else if (type === "user") {
-      cloneList.sort((a: any, b: any) => {
+      cloneList.sort((a, b) => {
         return order.user === "down"
           ? a.user.localeCompare(b.user)
           : b.user.localeCompare(a.user);
@@ -64,7 +74,7 @@ const ProductList = () => {
         : (cloneOrder.user = "down");
       setOrder(cloneOrder);
     } else if (type === "price") {
-      cloneList.sort((a: any, b: any) => {
+      cloneList.sort((a, b) => {
         let num1 = parseFloat(
           a.priceFormatDollar.substring(1).replace(/,/, "")
         );
@@ -84,7 +94,7 @@ const ProductList = () => {
         : (cloneOrder.price = "down");
       setOrder(cloneOrder);
     } else if (type === "user") {
-      cloneList.sort((a: any, b: any) => {
+      cloneList.sort((a, b) => {
         return a.user.localeCompare(b.user);
       });
     }
@@ -189,10 +199,10 @@ const ProductList = () => {
               </tr>
             </thead>
             <tbody>
-              {pageDisplay.map((item: any, i: any) => {
+              {pageDisplay.map((product:List, i:number) => {
                 return (
                   <tr key={i}>
-                    <AddProduct index={i} product={item} />
+                    <AddProduct product={product} />
                   </tr>
                 );
               })}
