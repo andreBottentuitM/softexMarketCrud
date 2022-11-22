@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/softexMarketCrud/static/css/main.3a12aaf1.css",
-    "main.js": "/softexMarketCrud/static/js/main.35452a2d.js",
+    "main.js": "/softexMarketCrud/static/js/main.7ab5cd45.js",
     "static/js/787.e40498aa.chunk.js": "/softexMarketCrud/static/js/787.e40498aa.chunk.js",
     "index.html": "/softexMarketCrud/index.html",
     "main.3a12aaf1.css.map": "/softexMarketCrud/static/css/main.3a12aaf1.css.map",
-    "main.35452a2d.js.map": "/softexMarketCrud/static/js/main.35452a2d.js.map",
+    "main.7ab5cd45.js.map": "/softexMarketCrud/static/js/main.7ab5cd45.js.map",
     "787.e40498aa.chunk.js.map": "/softexMarketCrud/static/js/787.e40498aa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3a12aaf1.css",
-    "static/js/main.35452a2d.js"
+    "static/js/main.7ab5cd45.js"
   ]
 }
