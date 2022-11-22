@@ -42,6 +42,8 @@ body{
 
 .heading-table th{
     cursor: pointer;
+    min-width:150px;
+    
 }
 
 .container{

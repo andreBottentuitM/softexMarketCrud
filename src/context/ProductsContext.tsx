@@ -34,7 +34,8 @@ const ProductContextProvider = ({children}: ContextProvider) => {
   const addProduct = ({ id ,product, type, price, user }: AddProduct) => {
     let date: any = new Date();
     date = date.toLocaleDateString();
-    let priceFormatNumber = parseFloat(price)
+    let priceFormatNumber = parseFloat(price.replace(/,/g, '.'))
+    
     let priceFormatDollar = priceFormatNumber.toLocaleString("en-US", {
       style: "currency",
       currency: "USD",
@@ -89,12 +90,12 @@ const ProductContextProvider = ({children}: ContextProvider) => {
   };
 
   const updateProduct = (id: number, updateProduct: List) => {
-    let priceFormatNumber = parseFloat(updateProduct.priceFormatDollar)
+    let priceFormatNumber = parseFloat(updateProduct.priceFormatDollar.replace(/,/g, '.'))
     let formatDollar = priceFormatNumber.toLocaleString("en-US", {
       style: "currency",
       currency: "USD",
     });
-
+   
     updateProduct.priceFormatDollar = formatDollar
   
     setList(

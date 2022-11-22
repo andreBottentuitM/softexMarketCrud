@@ -19,7 +19,7 @@ export const AddProductList = ({setShowAdd}:Props) => {
       let id = productList[productList.length - 1] === undefined ? 1 : productList[productList.length - 1].id + 1
     if(product !== '' && price !== undefined && user !== '' && (type !== '' && type !== 'Product type')){
       addProduct({id ,product, type, price, user });
-      //setShowAdd(false)
+      setShowAdd(false)
     }else{
       setShowAlert(true)
     }
@@ -49,7 +49,7 @@ export const AddProductList = ({setShowAdd}:Props) => {
         decimalsLimit={2}
         onValueChange={(value:any) =>{
           
-           setPrice(value.replace(/,/g, '.'))}}
+           setPrice(value)}}
 />
       </InputGroup>
         <Form.Group className="mb-2">

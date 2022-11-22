@@ -53,7 +53,7 @@ export const EditForm = ({ productEdit, setShowEdit}: Props) => {
         maxLength={10}
         placeholder="Please enter a price*"
         decimalsLimit={2}
-        onValueChange={(value) => {
+        onValueChange={(value:any) => {
           setPrice(value)
         } }
 />
