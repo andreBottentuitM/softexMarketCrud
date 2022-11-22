@@ -63,7 +63,7 @@ margin-bottom: 2rem
     position: relative;
     top:45px;
     gap:10px;
-    justify-content: end;
+    justify-content: flex-end;
     margin:80px 11px 15px 0;
 }
 
