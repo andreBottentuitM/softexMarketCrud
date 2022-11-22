@@ -15,7 +15,7 @@ export const EditForm = ({ productEdit, setShowEdit}: Props) => {
   const id = productEdit.id;
   const [showAlert, setShowAlert] = useState(false);
   const [product, setName] = useState<string>(productEdit.product);
-  const [priceFormatDollar, setPrice] = useState<string|undefined>(productEdit.priceFormatDollar.replace(/,/, "").substring(1));
+  const [priceFormatDollar, setPrice] = useState<string|undefined>(productEdit.priceFormatDollar.replace(/,/g, "").substring(1));
   const [user, setUser] = useState<string>(productEdit.user);
   const [type, setType] = useState<string>(productEdit.type);
 
