@@ -53,7 +53,7 @@ export const NavbarComponent = ({ onClick }: Props) => {
                     onClick={() => {
                       searchProduct("Eletroeletrônico", "type");
                     }}
-                    href="#action3"
+                    href="#Eletroeletrônico"
                   >
                     Eletroeletrônico
                   </NavDropdown.Item>
@@ -61,7 +61,7 @@ export const NavbarComponent = ({ onClick }: Props) => {
                     onClick={() => {
                       searchProduct("Alimentos e bebidas", "type");
                     }}
-                    href="#action4"
+                    href="#Alimentos e bebidas"
                   >
                     Alimentos e bebidas
                   </NavDropdown.Item>
@@ -69,7 +69,7 @@ export const NavbarComponent = ({ onClick }: Props) => {
                     onClick={() => {
                       searchProduct("Automotivo", "type");
                     }}
-                    href="#action5"
+                    href="#Automotivo"
                   >
                     Automotivo
                   </NavDropdown.Item>
@@ -77,7 +77,7 @@ export const NavbarComponent = ({ onClick }: Props) => {
                     onClick={() => {
                       searchProduct("Móveis", "type");
                     }}
-                    href="#action5"
+                    href="#Móveis"
                   >
                     Móveis
                   </NavDropdown.Item>

@@ -118,10 +118,10 @@ const ProductList = () => {
 
       cloneList.sort((a, b) => {
         let num1 = parseFloat(
-          a.priceFormatDollar.substring(1).replace(/,/, "")
+          a.priceFormatDollar.substring(1).replace(/,/g, "")
         );
         let num2 = parseFloat(
-          b.priceFormatDollar.substring(1).replace(/,/, "")
+          b.priceFormatDollar.substring(1).replace(/,/g, "")
         );
         if (num1 < num2) {
           return cloneOrder.price === "down" ? -1 : 1;
