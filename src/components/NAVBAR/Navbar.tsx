@@ -33,7 +33,7 @@ export const NavbarComponent = ({ onClick }: Props) => {
     <div>
       <Navbar bg="white" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="/" className="logotipo">
+          <Navbar.Brand href="https://andrebottentuitm.github.io/softexMarketCrud/" className="logotipo">
             <img src={logo} width={150} alt="softexMarket" title="softexMarket" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

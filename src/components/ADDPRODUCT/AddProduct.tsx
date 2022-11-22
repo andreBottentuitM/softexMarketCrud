@@ -45,7 +45,6 @@ export const AddProductList = ({setShowAdd}:Props) => {
         prefix='$'
         maxLength={15}
         placeholder="Please enter a price"
-        defaultValue={0}
         decimalsLimit={2}
         onValueChange={(value:any) =>{
           
