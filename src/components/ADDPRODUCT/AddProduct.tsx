@@ -43,7 +43,7 @@ export const AddProductList = ({setShowAdd}:Props) => {
         <CurrencyInput
         className="input-price"
         prefix='$'
-        maxLength={6}
+        maxLength={15}
         placeholder="Please enter a price"
         defaultValue={0}
         decimalsLimit={2}

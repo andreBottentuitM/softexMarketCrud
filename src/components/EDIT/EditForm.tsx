@@ -50,7 +50,7 @@ export const EditForm = ({ productEdit, setShowEdit}: Props) => {
         className="input-price mb-2"
         prefix='$'
         value={priceFormatDollar}
-        maxLength={10}
+        maxLength={15}
         placeholder="Please enter a price*"
         decimalsLimit={2}
         onValueChange={(value:any) => {
