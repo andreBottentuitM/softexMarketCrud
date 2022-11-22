@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/softexmarket/static/css/main.66865409.css",
+    "main.js": "/softexmarket/static/js/main.ac3dbc3e.js",
+    "static/js/787.e40498aa.chunk.js": "/softexmarket/static/js/787.e40498aa.chunk.js",
+    "index.html": "/softexmarket/index.html",
+    "main.66865409.css.map": "/softexmarket/static/css/main.66865409.css.map",
+    "main.ac3dbc3e.js.map": "/softexmarket/static/js/main.ac3dbc3e.js.map",
+    "787.e40498aa.chunk.js.map": "/softexmarket/static/js/787.e40498aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.66865409.css",
+    "static/js/main.ac3dbc3e.js"
+  ]
+}
