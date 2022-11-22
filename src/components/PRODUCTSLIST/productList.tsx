@@ -203,10 +203,10 @@ const ProductList = () => {
           >
             <thead>
               <tr className="thead col align-items-center heading-table">
-                <th>
-                  SI <BsArrowDownUp onClick={() => {
+                <th onClick={() => {
                     orderedProduct("id");
-                  }} />{" "}
+                  }}>
+                  SI <BsArrowDownUp  />{" "}
                 </th>
                 <th
                 onClick={() => {
