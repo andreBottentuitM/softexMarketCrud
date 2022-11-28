@@ -1,13 +1,17 @@
 # <h1 align="center"> Softex Market CRUD </h1> 
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/100027700/204397016-54d3556e-9b46-482d-b52b-4287816795ce.gif)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/100027700/204397016-54d3556e-9b46-482d-b52b-4287816795ce.gif">
+</p>
 
 <h2>Descrição</h2>
 Projeto de um CRUD 100% responsivo com diversos recursos interessantes. Utilizei para esse projeto as tecnologias React e Bootstrap.
 
 <h2>Como iniciar</h2>
-npm start
 
+```
+npm start
+```
 
 <h2>Tecnologias</h2>
 <ul>
