@@ -9,6 +9,11 @@ Projeto de um CRUD 100% responsivo com diversos recursos interessantes. Utilizei
 
 <h2>Como iniciar</h2>
 
+1° PASSO:
+```
+npm install
+```
+2° PASSO:
 ```
 npm start
 ```
