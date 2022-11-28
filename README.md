@@ -17,16 +17,16 @@ npm start
 <ul>
 <li>REACT (CONTEXT API)
 <li>BOOTSTRAP
-<li>JAVASCRIPT VANILLA
+<li>BIBLIOTECA: react-currency-input-field 
 </ul>
 
 
 <h2>:hammer: Funcionalidades do projeto</h2>
 <ul>
-<li><b>Adicionar, editar e deletar produtos</b> 
-<li><b>Pagination com ellipsis (bootstrap)</b> 
-<li><b>Ordenação dos produtos por nome do produto, id, preço, data de input e nome do usuário</b> 
-<li><b>Responsividade (bootstrap)</b>
-<li><b>Navbar com menu para selecionar os tipos dos produtos</b>
-<li><b>Search para nome do usuário e produto</b>
+<li><b>Adicionar, editar e deletar produtos.</b> 
+<li><b>Pagination com ellipsis (bootstrap).</b> 
+<li><b>Ordenação dos produtos por nome do produto, id, preço, data de input e nome do usuário.</b> 
+<li><b>Responsividade (bootstrap).</b>
+<li><b>Navbar com menu para selecionar os tipos dos produtos.</b>
+<li><b>Search para nome do usuário e produto.</b>
 </ul>
