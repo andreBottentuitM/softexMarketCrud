@@ -20,6 +20,7 @@ npm start
 
 <h2>Tecnologias</h2>
 <ul>
+<li>TYPESCRIPT
 <li>REACT (CONTEXT API)
 <li>BOOTSTRAP
 </ul>
