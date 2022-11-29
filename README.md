@@ -22,7 +22,6 @@ npm start
 <ul>
 <li>REACT (CONTEXT API)
 <li>BOOTSTRAP
-<li>BIBLIOTECA: react-currency-input-field 
 </ul>
 
 
